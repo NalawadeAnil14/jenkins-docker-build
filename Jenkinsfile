@@ -2,7 +2,7 @@ pipeline {
   agent any 
   
   environment {
-   DOCKER_REGISTRY="https://hub.docker.com/anilnalawade/docker-jenkins-demo"
+   DOCKER_REGISTRY="https://hub.docker.com"
    DOCKER_IMAGE="jenkins-docker-image"
   }
 
@@ -16,7 +16,7 @@ pipeline {
     stage("Build Docker image") {
       steps {
         script {
-          dockerImage = docker.build("$DOCKER_REGISTRY/DOCKER_IMAGE:$BUILD_NUMBER")
+          dockerImage = docker.build("anilnalawade/docker-jenkins-demo/$DOCKER_IMAGE:$BUILD_NUMBER")
           
           docker.withRegistry("$DOCKER_REGISTRY", 'docker-hub-token'){
             dockerImage.push()
