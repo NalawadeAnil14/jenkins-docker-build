@@ -18,7 +18,7 @@ pipeline {
         script {
           dockerImage = docker.build("anilnalawade/docker-jenkins-demo/$DOCKER_IMAGE:$BUILD_NUMBER")
           
-          docker.withRegistry("$DOCKER_REGISTRY", 'docker-hub-token'){
+          docker.withRegistry("$DOCKER_REGISTRY", 'dockerhubToken'){
             dockerImage.push()
           }              
         }
