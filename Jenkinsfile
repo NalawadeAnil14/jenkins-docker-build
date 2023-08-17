@@ -18,7 +18,7 @@ pipeline {
         script {
           dockerImage = docker.build("$DOCKER_REGISTRY/DOCKER_IMAGE:$BUILD_NUMBER")
           
-          docker.withRegistry("$DOCKER_REGISTRY", 'docker-hub-cred'){
+          docker.withRegistry("$DOCKER_REGISTRY", 'docker-hub-token'){
             dockerImage.push()
           }              
         }
