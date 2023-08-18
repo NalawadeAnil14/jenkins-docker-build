@@ -1,6 +1,10 @@
 pipeline { 
   agent any 
-  
+ 
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '2', daysToKeepStr: '5'))
+  }
+ 
   environment {
    DOCKER_REGISTRY="https://hub.docker.com"
    DOCKER_IMAGE="jenkins-docker-image"
